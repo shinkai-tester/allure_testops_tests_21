@@ -3,6 +3,7 @@ package com.shinkai.tests;
 import com.shinkai.api.testcase.CreateTestCaseRequestDto;
 import com.shinkai.api.testcase.TestCaseApi;
 import com.shinkai.api.testcase.TestCaseDetailsResponseDto;
+import com.shinkai.helpers.Attach;
 import com.shinkai.helpers.WithLogin;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
@@ -57,10 +58,12 @@ public class EditTestCasesTests extends TestBase {
 
         testCasePage.openPage(PROJECT_ID, testCaseId);
         testCasesListPage.verifyTestCasesTableHasTestCase(testCaseName);
+        Attach.screenshotAs("Screenshot: test case before change");
         testCasePage.clickTestCaseActions();
         testCasePage.renameTestCase(newName);
-        testCasePage.verifyTestCaseNameAndId(newName, testCaseId);
         testCasePage.editTestCaseDescription(newDescription);
+        Attach.screenshotAs("Screenshot: test case is changed");
+        testCasePage.verifyTestCaseNameAndId(newName, testCaseId);
         testCasePage.verifyTestCaseDescription(newDescription);
     }
 
@@ -76,6 +79,7 @@ public class EditTestCasesTests extends TestBase {
         testCasePage.addStepToTestCase(stepName1);
         testCasePage.addNextStepToTestCase(stepName2);
         testCasePage.submitAddingScenario();
+        Attach.screenshotAs("Screenshot: steps are added to test case");
         testCasePage.verifyScenarioHasStep(stepName1);
         testCasePage.verifyScenarioHasStep(stepName2);
     }
@@ -95,6 +99,7 @@ public class EditTestCasesTests extends TestBase {
         testCasePage.attachFileToStep(testDataGenerate.getFile(fileName));
         testCasePage.verifyAddedFileBeforeSubmit(fileName, fileType);
         testCasePage.submitAddingOfFile();
+        Attach.screenshotAs("Screenshot of the attached file");
         testCasePage.verifyAddedFileAfterSubmit(fileName, fileType);
     }
 }

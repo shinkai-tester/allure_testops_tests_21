@@ -45,7 +45,6 @@ public class TestCasePage {
         clearOldTestCaseName();
         enterNameInput.sendKeys(newName);
         submitEditTestName.click();
-        Attach.screenshotAs("Screenshot: test case name is changed");
     }
 
     private void clearOldTestCaseName() {
@@ -62,7 +61,6 @@ public class TestCasePage {
         descriptionArea.find("button").click();
         $(byName("description")).setValue(newDescription);
         descriptionArea.find(byName("submit")).click();
-        Attach.screenshotAs("Screenshot: test case description is changed");
     }
 
     @Step("Verify test case description is [{description}]")
@@ -84,7 +82,6 @@ public class TestCasePage {
 
     public void submitAddingScenario() {
         scenario.find(byName("submit")).click();
-        Attach.screenshotAs("Screenshot: steps are added to test case");
     }
 
     @Step("Verify test case scenario has step: [{step}]")
@@ -116,7 +113,6 @@ public class TestCasePage {
     public void submitAddingOfFile() {
         $(".DropZone__edit-view").find(byName("submit")).click();
         scenario.find(byName("submit")).click();
-        Attach.screenshotAs("Screenshot of the attached file");
     }
 
     @Step("Verify filename and its extension after submit attach: [{fileName}], [{contentType}]")
