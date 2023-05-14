@@ -32,8 +32,6 @@ public class TestCasePage {
         testCaseOverview.should(appear);
     }
 
-    ;
-
     @Step("Click 'Test case actions'")
     public void clickTestCaseActions() {
         menuTrigger.shouldNotHave(attribute("disabled")).click();
@@ -66,6 +64,7 @@ public class TestCasePage {
     @Step("Verify test case description is [{description}]")
     public void verifyTestCaseDescription(String description) {
         descriptionArea.shouldHave(text(description));
+        Attach.screenshotAs("Screenshot: test case is changed", descriptionArea.find(byText(description)));
     }
 
     @Step("Add step to test case: [{stepName}]")
@@ -78,6 +77,7 @@ public class TestCasePage {
     public void addNextStepToTestCase(String stepName) {
         editStep.pressEnter();
         editStep.sendKeys(stepName);
+        Attach.screenshotAs("Screenshot of test case steps", scenario.find(byName("submit")));
     }
 
     public void submitAddingScenario() {
@@ -119,6 +119,6 @@ public class TestCasePage {
     public void verifyAddedFileAfterSubmit(String fileName, String fileType) {
         $(".AttachmentRow__name").shouldHave(text(fileName));
         $(".AttachmentRow__type").shouldHave(exactText(fileType));
-        $(".FileContent__media").shouldHave(attributeMatching("src", ".*/api/rs/testcase/attachment/.*"));
+        Attach.screenshotAs("Screenshot of the attached file", $(".FileContent__media").shouldHave(attributeMatching("src", ".*/api/rs/testcase/attachment/.*")));
     }
 }

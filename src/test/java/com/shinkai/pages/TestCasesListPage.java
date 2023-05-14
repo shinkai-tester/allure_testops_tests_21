@@ -14,6 +14,5 @@ public class TestCasesListPage {
     @Step("Verify test cases table contains test case with name [{testCaseName}]")
     public void verifyTestCasesTableHasTestCase(String testCaseName) {
         testCasesList.find(text(testCaseName)).shouldBe(visible);
-        Attach.screenshotAs("Screenshot of test cases table");
     }
 }
