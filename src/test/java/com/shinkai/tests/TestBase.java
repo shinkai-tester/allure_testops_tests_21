@@ -1,5 +1,6 @@
 package com.shinkai.tests;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.shinkai.generators.TestCaseDataGenerator;
 import com.shinkai.helpers.Attach;
@@ -34,5 +35,6 @@ public class TestBase {
         Attach.addVideo();
         Attach.pageSource();
         Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
     }
 }
