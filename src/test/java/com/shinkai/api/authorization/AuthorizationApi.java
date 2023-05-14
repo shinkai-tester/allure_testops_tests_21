@@ -13,7 +13,6 @@ public class AuthorizationApi {
     public static AuthorizationResponseDto getAuthorization() {
         AuthorizationResponseDto authorizationResponse = with()
                 .filter(withCustomTemplates())
-                .log().all()
                 .formParam("grant_type", "apitoken")
                 .formParam("scope", "openid")
                 .formParam("token", Auth.config.apiToken())
@@ -28,7 +27,6 @@ public class AuthorizationApi {
     public static String getAuthorizationCookie() {
         String xsrfToken = getAuthorization().getJti();
         return with().filter(withCustomTemplates())
-                .log().all()
                 .header("X-XSRF-TOKEN", xsrfToken)
                 .header("Cookie", "XSRF-TOKEN=" + xsrfToken)
                 .formParam("username", Auth.config.usernameAllure())
