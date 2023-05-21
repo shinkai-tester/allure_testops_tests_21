@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import com.shinkai.config.WebDriverProvider;
 
 public class TestBase {
-
     TestCasePage testCasePage = new TestCasePage();
     TestCasesListPage testCasesListPage = new TestCasesListPage();
     TestCaseDataGenerator testDataGenerate = new TestCaseDataGenerator();
